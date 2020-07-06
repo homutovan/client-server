@@ -87,7 +87,8 @@ class Gui(QWidget):
         file_patch = self.foldername  + '/log.csv' if self.foldername  else 'log.csv'
         self.server = Server(str(self.spin.value()).rjust(2, '0'), file_patch)
         self.server.show_string.connect(self.show_msg)
-        if (port := self.edit_port.text()):
+        port = self.edit_port.text()
+        if port:
             self.server.create(int(port))
             self.server.loop = True
             self.server.moveToThread(self.thread)

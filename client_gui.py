@@ -67,7 +67,10 @@ class Gui(QWidget):
         self.addr_frame.setDisabled(value)
         
     def connect(self):
-        if (host := self.edit_host.text()) and (port := self.edit_port.text()):
+        host = self.edit_host.text()
+        port = self.edit_port.text()
+        
+        if host and port:
             self.client.connect(host, int(port))
             if self.client.peername:
                 self.lbl_err.setText(f'Connected to: {self.client.peername[0]}:{self.client.peername[1]}')
@@ -81,7 +84,8 @@ class Gui(QWidget):
         self.lbl_err.setText('')
         
     def send(self):
-        if (msg := self.edit_msg.text()):
+        msg = self.edit_msg.text()
+        if msg:
             self.client.send(msg)
             self.lbl_err_msg.setText('')
         else:

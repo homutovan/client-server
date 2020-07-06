@@ -107,7 +107,8 @@ class String_handler():
         self.pattern = '(\d{4})\s(..)\s(\d{2}:\d{2}:\d{2}).(\d{3})\s(\d{2,})(\WCR\W)'
     
     def parse(self, string):
-        if (match := re.fullmatch(self.pattern, string)):
+        match = re.fullmatch(self.pattern, string)
+        if match:
             self.groups = match.groups()
             self.number = self.groups[0]
             self.id = self.groups[1]
